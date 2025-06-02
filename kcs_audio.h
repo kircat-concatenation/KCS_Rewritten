@@ -10,11 +10,19 @@
 #define BUFFER_SIZE 65536
 #define BAUD_RATE_300 300
 #define BAUD_RATE_1200 1200
+#define BAUD_RATE_2400 2400
 
 // Tone Freqs
+
+//300 Baud
+
+//1200 Baud
 #define TONE_FREQ_1200 1200
 #define TONE_SPACE_2400 2400
 
+// 2400 Baud
+#define TONE_FREQ_2400 2400
+#define TONE_FREQ_4800 4800
 // Data Structs
 
 typedef struct {

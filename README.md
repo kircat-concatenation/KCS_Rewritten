@@ -11,6 +11,7 @@ A lightweight utility written in Pure C to encode and decode data to/from the KC
 
 **To-Be-Implemented**
 * Add Support for 300 Baud CUTS Standard
+* Add Support for 2400 Baud MSX Standard
 * Add Arguments for Adjustable Tone Frequency and Baud Rate
 * Add More Verbosity Options for Signal Inspection
 * Add Options for Signal Adjustment (Bias levels, Leader, etc)
