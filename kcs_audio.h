@@ -7,7 +7,7 @@
 
 // Constants
 #define SAMPLE_RATE 44100
-#define BUFFER_SIZE 65536
+//#define BUFFER_SIZE 65536
 #define BAUD_RATE_300 300
 #define BAUD_RATE_1200 1200
 #define BAUD_RATE_2400 2400

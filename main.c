@@ -13,7 +13,7 @@ Kira
 #include <math.h>
 #include "kcs_audio.h"
 
-#define BUFFER_SIZE 65536
+//#define BUFFER_SIZE 65536
 
 void print_hex(const uint8_t *data, size_t size) {
     for (size_t i = 0; i < size; i++) {
@@ -49,8 +49,27 @@ int main(int argc, char *argv[]) {
             perror("Failed to open input binary file");
             return EXIT_FAILURE;
         }
+        size_t alloc_size = 65536;
+        size_t data_size = 0;
+        uint8_t *data = malloc(alloc_size);
+        
+        if (!data) { perror("Memory allocation failed"); fclose(bin_file); return EXIT_FAILURE; }
+        
+        while ((bytes = fread(buffer, 1, sizeof(buffer), bin_file) > 0)) {
 
-        uint8_t *data = malloc(BUFFER_SIZE);
+            if (data_size +bytes > alloc_size) {
+                alloc_size *= 2;
+                uint8_t *newdata = realloc(data, alloc_size);
+                if (!new_data) { free(data); perror("Memory reallocation failed"); fclose(bin_file);return EXIT_FAILURE;}
+                data = newdata;
+            }
+            memcpy(data + data_size, buffer, bytes);
+            data_size += bytes;
+
+
+        }
+
+        /*uint8_t *data = malloc(BUFFER_SIZE);
         if (!data) {
             fprintf(stderr, "Memory allocation failed\n");
             fclose(bin_file);
@@ -64,7 +83,7 @@ int main(int argc, char *argv[]) {
             fprintf(stderr, "Input binary file is empty or read failed\n");
             free(data);
             return EXIT_FAILURE;
-        }
+        }*/
 
         AudioBuffer audio = {0};
         encode_kcs(data, data_size, &audio, fmt, baud_rate);
