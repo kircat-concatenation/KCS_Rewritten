@@ -109,7 +109,7 @@ void decode_kcs(const AudioBuffer *audio, uint8_t *out_data, size_t *out_size, S
             int stop_bit = detect_bit(samples_ptr, sample_index, samples_per_bit);
             sample_index += samples_per_bit;
         }
-        if (data_index >= BUFFER_SIZE) break;
+        if (data_index >= alloc_size) break;
         out_data[data_index++] = byte;
     }
     *out_size = data_index;

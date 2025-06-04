@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
             return EXIT_FAILURE;
         }
 
-        uint8_t *decoded_data = malloc(BUFFER_SIZE);
+        uint8_t *decoded_data = malloc(alloc_size);
         if (!decoded_data) {
             fprintf(stderr, "Memory allocation failed\n");
             free_audio_buffer(&audio);
