@@ -7,6 +7,11 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+#define SAMPLE_RATE 44100 
+
+#define TONE_FREQ_1200 1200.0
+#define TONE_SPACE_2400 2400.0
+
 #pragma pack(push, 1)
 typedef struct {
     char chunk_id[4];

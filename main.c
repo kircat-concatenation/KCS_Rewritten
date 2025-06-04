@@ -55,12 +55,14 @@ int main(int argc, char *argv[]) {
         
         if (!data) { perror("Memory allocation failed"); fclose(bin_file); return EXIT_FAILURE; }
         
-        while ((bytes = fread(buffer, 1, sizeof(buffer), bin_file) > 0)) {
+        uint8_t buffer[1024];
+        size_t bytes;
+        while ((bytes = fread(buffer, 1, sizeof(buffer), bin_file)) > 0) {
 
             if (data_size +bytes > alloc_size) {
                 alloc_size *= 2;
                 uint8_t *newdata = realloc(data, alloc_size);
-                if (!new_data) { free(data); perror("Memory reallocation failed"); fclose(bin_file);return EXIT_FAILURE;}
+                if (!newdata) { free(data); perror("Memory reallocation failed"); fclose(bin_file);return EXIT_FAILURE;}
                 data = newdata;
             }
             memcpy(data + data_size, buffer, bytes);
